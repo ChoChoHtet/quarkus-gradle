@@ -9,6 +9,11 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+   // implementation 'io.quarkus:quarkus-logging-gelf'
+  //  implementation 'io.quarkus:quarkus-logging-json'
+    //implementation 'io.quarkus:quarkus-microprofile-config'
+    implementation 'io.quarkus:quarkus-config-yaml'
     implementation 'io.quarkus:quarkus-reactive-routes'
     implementation 'org.apache.camel.quarkus:camel-quarkus-vertx-websocket'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}")
@@ -28,9 +33,20 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
+/*quarkus {
+    defaultProfile = "prod-kubernetes"
+    profiles{
+        named("prod-kubernetes"){
 
+        }
+    }
+}*/
+
+//set running profile in test
 test {
+    useJUnitPlatform()
     systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    systemProperty "quarkus.test.profile" , "foo"
 }
 compileJava {
     options.encoding = 'UTF-8'
