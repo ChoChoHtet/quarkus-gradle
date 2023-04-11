@@ -9,16 +9,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.quarkus:quarkus-reactive-routes'
-    implementation 'org.apache.camel.quarkus:camel-quarkus-vertx-websocket'
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-undertow'
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    //validate input and output values
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+    //marshalling/unmarshalling xml
+    //implementation 'io.quarkus:quarkus-resteasy-reactive-jaxb'
+    //marshalling/unmarshalling json to/from java objects
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jsonb'
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+   // testImplementation 'org.mockito:mockito-core'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 group 'com.example'
